@@ -1,0 +1,12 @@
+{%extends "base.html"%}
+{% block content %}
+	<div class="article-list">
+	<h3>search results for "{{query}}"</h3>
+	{% for article in articles %}
+		<article>
+			<h2><a href="{{article[1].link}}">{{article[1].title}}</a></h2>
+			<p class="meta">{{article[1].published}} | {{article[0]}} </p>
+		</article>
+	{%endfor%}
+	</div>
+{% endblock %}

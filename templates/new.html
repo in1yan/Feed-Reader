@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+	<title>New Feed</title>
+</head>
+<body>
+	<div class="new-feed-container">
+		<h1>Add new feed: </h1>
+	<form action="{{url_for('new')}}" method="POST" class="new-feed-form">
+		<input type="text" name="src" id="src" placeholder="name of source">
+		<input type="url" name="url" id="url" placeholder="url of source">
+		<input type="submit" value="Add" class="btn">
+			<input type="button" onclick="window.location.href='{{url_for('index')}}';" value="Home" class="btn">
+	</form>	
+			<ol class="source-list">
+				{% for src,url in sources.items()%}
+				<li>
+
+					<p><span class="source-name">{{src}}</span> : {{url}}</p>
+					<form action="{{url_for('remove')}}" method="POST">
+						<input type="hidden" name="src" value="{{src}}">
+						<input type="submit" value="remove" class="btn">	
+					</form>
+				</li>
+				{% endfor %}
+			</ol>
+	</div>
+</body>
+</html>

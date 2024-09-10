@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>New Agregator</title>
+	<link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+</head>
+<body>
+	<header>
+		<!-- <h1 class="neon-text">NEWS AGREGATOR</h1> -->
+		<form action="{{url_for('search')}}" method="GET">
+			<input type="text" name="q" id="q">
+			<select name="src" id="src">
+				<option value="all">all</option>
+				{% for s in src %}
+					<!-- <option value={{s}}>{{s}}</option> -->
+					<option value="{{ s }}" {% if request.args.get('src') == source %}selected{% endif %}>{{ s }}</option>
+				{% endfor %}
+			</select>	
+			<input type="submit" value="SEARCH" class="btn">
+		</form>
+			<input type="button" onclick="window.location.href='{{url_for('new')}}';" value="New Feed" class="btn">
+			<input type="button" onclick="window.location.href='{{url_for('index')}}';" value="Home" class="btn">
+	</header>
+	{%block content%}{%endblock%}
+	
+</body>
+</html>
